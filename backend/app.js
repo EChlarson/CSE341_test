@@ -25,7 +25,7 @@ mongodb.initDb((err, mongodb) => { //Calls the initDb function from your custom 
   if (err) { //If there's an error connecting to the database, it logs the error and does not start the server.
     console.log(err);
   } else { //If the connection is successful, it starts the server and logs a success message.
-    app.listen(port);
+    app.listen(port, '0.0.0.0');
     console.log(`Connected to DB and listening on ${port}`);
   }
 });
