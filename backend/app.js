@@ -7,21 +7,24 @@ const MongoClient = require('mongodb').MongoClient; //From the MongoDB package; 
 const mongodb = require('./db/connect'); //A custom module that handles the MongoDB connection logic.
 const professionalRoutes = require('./routes/contacts'); //Handles the routes related to contacts (even though it isn't used directly—more on that below).
 
-const port = process.env.PORT || 8080;
+//Setting up the server
+const port = process.env.PORT || 8080;//This defines the port your app will run on, using an environment variable if available (for deployment), or defaulting to 8080.
 const app = express();
 
+//Middleware Setup
 app
-  .use(bodyParser.json())
+  .use(bodyParser.json()) //bodyParser.json(): Allows Express to read req.body when data is sent in JSON format.
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    next();
+    next(); //The custom middleware adds a response header to allow Cross-Origin Resource Sharing (CORS) from any domain. This is important when your frontend and backend are on different domains/ports.
   })
   .use('/', require('./routes'));
 
-mongodb.initDb((err, mongodb) => {
-  if (err) {
+  //Connecting to MongoDB and starting the server
+mongodb.initDb((err, mongodb) => { //Calls the initDb function from your custom db/connect.js file.
+  if (err) { //If there's an error connecting to the database, it logs the error and does not start the server.
     console.log(err);
-  } else {
+  } else { //If the connection is successful, it starts the server and logs a success message.
     app.listen(port);
     console.log(`Connected to DB and listening on ${port}`);
   }
