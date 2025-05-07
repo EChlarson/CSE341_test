@@ -16,6 +16,8 @@ app
   .use(bodyParser.json()) //bodyParser.json(): Allows Express to read req.body when data is sent in JSON format.
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     next(); //The custom middleware adds a response header to allow Cross-Origin Resource Sharing (CORS) from any domain. This is important when your frontend and backend are on different domains/ports.
   })
   .use('/', require('./routes'));
