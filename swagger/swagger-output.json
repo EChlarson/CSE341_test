@@ -1,4 +1,5 @@
-{  "swagger": "2.0",
+{
+  "swagger": "2.0",
   "info": {
     "title": "My API",
     "description": "Temple API",
@@ -105,7 +106,7 @@
         "description": "API Key - Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N",
         "parameters": [
           {
-            "name": "ID",
+            "name": "temple_id",
             "in": "path",
             "required": true,
             "type": "string"
